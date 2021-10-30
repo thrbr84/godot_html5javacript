@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godot HTML / JavaScript</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <iframe src="files/godot.html" width="100%" height="300" frameborder="0"></iframe>
+            </div>
+            <div class="col">
+
+
+                <h2 id="labelNumber">0</h2>
+
+                <div class="row">
+                    <div class="col">
+                        <a href="javascript:increaseNumber();void(0)" class="btn btn-primary">Increase</a>
+                        <a href="javascript:decreaseNumber();void(0)" class="btn btn-primary">Decrease</a>
+                        <a href="javascript:restartNumber();void(0)" class="btn btn-warning">Restart</a>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col">
+                        <a href="javascript:login();void(0)" class="btn btn-success">Login</a>
+                        <a href="javascript:logout();void(0)" class="btn btn-danger">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+   
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        var n = 1;
+
+        function restartNumber(){
+            n = 1;
+            window.localStorage.setItem("number", n);
+            updateLabel()
+        }
+
+        function login(){
+            window.localStorage.setItem("logged", "1");
+        }
+
+        function logout(){
+            window.localStorage.removeItem("logged");
+        }
+
+        function increaseNumber() {
+            n++;
+            window.localStorage.setItem("number", n);
+            updateLabel()
+        }
+
+        function decreaseNumber() {
+            n = n <= 1 ? 1 : n-1
+
+            window.localStorage.setItem("number", n);
+            updateLabel()
+        }
+
+        function updateLabel(){
+            $("#labelNumber").text(n);
+        }
+
+        $(document).ready(function(){
+            var _loadNumber = window.localStorage.getItem("number");
+            if (_loadNumber) {
+                n = parseInt(_loadNumber);
+            }
+            updateLabel()
+        });
+    </script>
+
+</body>
+</html>
