@@ -38,6 +38,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="User" type="Label" parent="."]
+margin_top = 137.0
+margin_right = 150.0
+margin_bottom = 159.0
+rect_scale = Vector2( 2, 2 )
+text = "1234"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 1.335
 margin_top = 237.0
@@ -77,7 +89,7 @@ rect_min_size = Vector2( 55, 55 )
 normal = ExtResource( 3 )
 
 [node name="Lock" type="AnimatedSprite" parent="."]
-position = Vector2( 149.169, 100.78 )
+position = Vector2( 149.169, 76.78 )
 scale = Vector2( 0.699661, 0.699661 )
 frames = SubResource( 1 )
 animation = "locked"
@@ -86,8 +98,11 @@ animation = "locked"
 wait_time = 0.1
 autostart = true
 
+[node name="CheckUser" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="HBoxContainer/Control1/btnDecrease" to="." method="_on_btnDecrease_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control2/btnRestart" to="." method="_on_btnRestart_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control3/btnIncrease" to="." method="_on_btnIncrease_pressed"]
 [connection signal="timeout" from="Lock/checkLogin" to="." method="_on_checkLogin_timeout"]
+[connection signal="timeout" from="CheckUser" to="." method="_on_CheckUser_timeout"]
