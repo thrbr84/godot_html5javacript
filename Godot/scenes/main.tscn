@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://assets/restart.png" type="Texture" id=2]
@@ -6,17 +6,27 @@
 [ext_resource path="res://assets/minus.png" type="Texture" id=4]
 [ext_resource path="res://assets/locked.png" type="Texture" id=5]
 [ext_resource path="res://assets/unlocked.png" type="Texture" id=6]
+[ext_resource path="res://assets/audio1.png" type="Texture" id=7]
+[ext_resource path="res://assets/stop.png" type="Texture" id=8]
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/audio1.png-2faf1499ed8bfa183537532b84442641.stex"
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/audio1.png-2faf1499ed8bfa183537532b84442641.stex"
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "locked",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "unlocked",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "locked",
 "speed": 5.0
 } ]
 
@@ -28,9 +38,9 @@ wait_time = 0.1
 autostart = true
 
 [node name="Label" type="Label" parent="."]
-margin_top = 185.0
+margin_top = 198.0
 margin_right = 150.0
-margin_bottom = 207.0
+margin_bottom = 214.0
 rect_scale = Vector2( 2, 2 )
 align = 1
 valign = 1
@@ -39,9 +49,9 @@ __meta__ = {
 }
 
 [node name="User" type="Label" parent="."]
-margin_top = 137.0
+margin_top = 89.0
 margin_right = 150.0
-margin_bottom = 159.0
+margin_bottom = 111.0
 rect_scale = Vector2( 2, 2 )
 text = "1234"
 align = 1
@@ -88,9 +98,80 @@ rect_min_size = Vector2( 55, 55 )
 [node name="btnIncrease" type="TouchScreenButton" parent="HBoxContainer/Control3"]
 normal = ExtResource( 3 )
 
+[node name="HBoxContainerAudio" type="HBoxContainer" parent="."]
+margin_left = 1.335
+margin_top = 149.0
+margin_right = 301.335
+margin_bottom = 212.0
+custom_constants/separation = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control1" type="Control" parent="HBoxContainerAudio"]
+margin_left = 15.0
+margin_right = 60.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 45, 45 )
+
+[node name="btnAudio1" type="TouchScreenButton" parent="HBoxContainerAudio/Control1"]
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 7 )
+
+[node name="Control2" type="Control" parent="HBoxContainerAudio"]
+margin_left = 60.0
+margin_right = 105.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 45, 45 )
+
+[node name="btnAudio2" type="TouchScreenButton" parent="HBoxContainerAudio/Control2"]
+scale = Vector2( 0.8, 0.8 )
+normal = SubResource( 2 )
+
+[node name="Control3" type="Control" parent="HBoxContainerAudio"]
+margin_left = 105.0
+margin_right = 150.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 45, 45 )
+
+[node name="btnAudio3" type="TouchScreenButton" parent="HBoxContainerAudio/Control3"]
+scale = Vector2( 0.8, 0.8 )
+normal = SubResource( 3 )
+
+[node name="Control4" type="Control" parent="HBoxContainerAudio"]
+margin_left = 150.0
+margin_right = 195.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 45, 45 )
+
+[node name="btnStop" type="TouchScreenButton" parent="HBoxContainerAudio/Control4"]
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 8 )
+
+[node name="Control5" type="Control" parent="HBoxContainerAudio"]
+margin_left = 195.0
+margin_right = 240.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 45, 45 )
+
+[node name="btnVolumePlus" type="TouchScreenButton" parent="HBoxContainerAudio/Control5"]
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 3 )
+
+[node name="Control6" type="Control" parent="HBoxContainerAudio"]
+margin_left = 240.0
+margin_right = 285.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 45, 45 )
+
+[node name="btnVolumeMinus" type="TouchScreenButton" parent="HBoxContainerAudio/Control6"]
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 4 )
+
 [node name="Lock" type="AnimatedSprite" parent="."]
-position = Vector2( 149.169, 76.78 )
-scale = Vector2( 0.699661, 0.699661 )
+position = Vector2( 149.169, 52.78 )
+scale = Vector2( 0.459661, 0.459661 )
 frames = SubResource( 1 )
 animation = "locked"
 
@@ -104,5 +185,11 @@ autostart = true
 [connection signal="pressed" from="HBoxContainer/Control1/btnDecrease" to="." method="_on_btnDecrease_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control2/btnRestart" to="." method="_on_btnRestart_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control3/btnIncrease" to="." method="_on_btnIncrease_pressed"]
+[connection signal="pressed" from="HBoxContainerAudio/Control1/btnAudio1" to="." method="_on_btnAudio1_pressed"]
+[connection signal="pressed" from="HBoxContainerAudio/Control2/btnAudio2" to="." method="_on_btnAudio2_pressed"]
+[connection signal="pressed" from="HBoxContainerAudio/Control3/btnAudio3" to="." method="_on_btnAudio3_pressed"]
+[connection signal="pressed" from="HBoxContainerAudio/Control4/btnStop" to="." method="_on_btnStop_pressed"]
+[connection signal="pressed" from="HBoxContainerAudio/Control5/btnVolumePlus" to="." method="_on_btnVolumePlus_pressed"]
+[connection signal="pressed" from="HBoxContainerAudio/Control6/btnVolumeMinus" to="." method="_on_btnVolumeMinus_pressed"]
 [connection signal="timeout" from="Lock/checkLogin" to="." method="_on_checkLogin_timeout"]
 [connection signal="timeout" from="CheckUser" to="." method="_on_CheckUser_timeout"]

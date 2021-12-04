@@ -12,7 +12,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!--Seu JS com as funções-->
-    <script src="funcoes.js"></script>
+    <script src="./libs/howler/howler.core.min.js"></script>
+    <script src="./libs/howler/player.js"></script>
+    <script src="./funcoes.js"></script>
 
     <!--Estilo para deixar o frame na tela toda-->
     <style type="text/css">
@@ -26,26 +28,59 @@
             margin: 0;
         }
 
+        .iframeWrapper{
+            background-color: #000;
+            width: 100%;
+            height: 550px;
+            padding-top: 100px;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
         iframe{
             border: none;
             width: 100%;
-            height: 300px;
+            height: 350px;
             background-color: transparent;
         }
     </style>
+
+    <script type="text/javascript">
+        // Setup our new audio player class and pass it the playlist.
+        var player = new Player([
+        {
+            name: 'RaveDigger',
+            file: 'audio/rave_digger.mp3',
+            howl: null
+        },
+        {
+            name: '80sVibe',
+            file: 'audio/80s_vibe.mp3',
+            howl: null
+        },
+        {
+            name: 'RunningOut',
+            file: 'audio/running_out.mp3',
+            howl: null
+        }
+        ]);
+    </script>
 </head>
 <body>
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col">
-                <iframe src="files/godot.html" frameborder="0"></iframe>
+            <div class="col-sm-12 col-lg-6">
+                <div class="iframeWrapper">
+                    <iframe src="files/godot.html" frameborder="0"></iframe>
+                </div>
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-lg-6">
                 <h2 id="labelNumber">0</h2>
 
                 <div class="row">
                     <div class="col">
+                        Simple Functions:<br/>
                         <a href="javascript:increaseNumber();void(0)" class="btn btn-primary">Increase</a>
                         <a href="javascript:decreaseNumber();void(0)" class="btn btn-primary">Decrease</a>
                         <a href="javascript:restartNumber();void(0)" class="btn btn-warning">Restart</a>
@@ -54,11 +89,30 @@
 
                 <div class="row mt-5">
                     <div class="col">
+                        Login (Javascript Fetch API):<br/>
                         <a href="javascript:login();void(0)" class="btn btn-success">Login</a>
                         <a href="javascript:logout();void(0)" class="btn btn-danger">Logout</a>
                     </div>
                 </div>
 
+                <div class="row mt-5">
+                    <div class="col">
+                        Audios (SkipTo):<br/> 
+                        <small>Advance to the next audio stopping all the others</small><br/>
+                        <a href="javascript:playAudio('RaveDigger');void(0)" class="btn btn-primary">Rave Digger</a>
+                        <a href="javascript:playAudio('80sVibe');void(0)" class="btn btn-primary">80s Vibe</a>
+                        <a href="javascript:playAudio('RunningOut');void(0)" class="btn btn-primary">Running Out</a>
+                        <a href="javascript:stopAudioAll();void(0)" class="btn btn-danger">Stop</a>
+                        <br/><br/>
+                        Audios (Play Together):<br/>
+                        <small>Play as new audio keeping the others</small><br/>
+                        <a href="javascript:playAudio('RaveDigger', 'play');void(0)" class="btn btn-primary">Rave Digger</a>
+                        <a href="javascript:playAudio('80sVibe', 'play');void(0)" class="btn btn-primary">80s Vibe</a>
+                        <a href="javascript:playAudio('RunningOut', 'play');void(0)" class="btn btn-primary">Running Out</a>
+                        <br/><br/>
+                        Volume: <input type="range" step="0.01" min="0" max="1.0" value="0.5" class="audioVolume">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

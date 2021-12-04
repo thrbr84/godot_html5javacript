@@ -66,4 +66,14 @@ $(document).ready(function(){
         n = parseInt(_loadNumber);
     }
     functions["updateLabel"]();
+
+    $(".audioVolume").bind("change", function(e){
+        var vol = ($(e.target).val());
+        setAudioVolume(vol);
+    });
+
+    if (player) {
+        // default
+        setAudioVolume(0.5);
+    }
 });

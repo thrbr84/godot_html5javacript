@@ -2,12 +2,31 @@ extends Node2D
 
 var userDataReady = false
 var _number = 0
+var volume = 0.5
 
 func _ready():
+	
+	
+	var firstName = "Thiago"
+	#var lastName = "Bruno"
+	#var emailCreate = "thiago@email.com"
+	#var wallet = "123456"
+	#var passWordCreate = "123"
+	#var passWordConfirm = "1230"
+	#print(str("parent.creatAccount('",firstName,"','",lastName,"','",emailCreate,"','",wallet,"','",passWordCreate,"','",passWordConfirm,"')"))
+	
+	
+	_get_user_volume()
+	
 	$Lock.play("locked")
 	$Label.text = "1"
 	$User.text = "..."
-	
+
+func _get_user_volume():
+	var userVolume = JavaScript.eval("window.localStorage.getItem('currentAudioVolume')")
+	if (userVolume):
+		volume = float(userVolume)
+
 func _on_Timer_timeout():
 	_number = JavaScript.eval("window.localStorage.getItem('number')")
 	if (_number):
@@ -50,3 +69,30 @@ func _on_CheckUser_timeout():
 		var jsonParseResult: JSONParseResult = JSON.parse(stringResult)
 		var userJson = jsonParseResult.result
 		$User.text = str(userJson["title"])
+
+
+func _on_btnAudio1_pressed():
+	JavaScript.eval(str("parent.playAudio('RaveDigger')"))
+
+func _on_btnAudio2_pressed():
+	JavaScript.eval(str("parent.playAudio('80sVibe')"))
+
+func _on_btnAudio3_pressed():
+	JavaScript.eval(str("parent.playAudio('RunningOut')"))
+
+func _on_btnStop_pressed():
+	JavaScript.eval(str("parent.stopAudioAll()"))
+
+func _on_btnVolumeMinus_pressed():
+	_get_user_volume()
+	volume -= 0.1
+	if volume < 0:
+		volume = 0
+	JavaScript.eval(str("parent.setAudioVolume(",volume,")"))
+
+func _on_btnVolumePlus_pressed():
+	_get_user_volume()
+	volume += 0.1
+	if volume > 1:
+		volume = 1
+	JavaScript.eval(str("parent.setAudioVolume(",volume,")"))

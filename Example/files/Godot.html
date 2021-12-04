@@ -115,7 +115,21 @@
 <link rel='apple-touch-icon' href='Godot.apple-touch-icon.png'/>
 <link rel='manifest' href='Godot.manifest.json'>
 <script type='application/javascript'>window.addEventListener('load', () => {if ('serviceWorker' in navigator) {navigator.serviceWorker.register('Godot.service.worker.js');}});</script>
-
+<style type="text/css">
+body{
+background-color:#000
+}
+#status-progress{
+background-color:#900 !important;
+border: none !important;
+border-radius:0 !important;
+}
+#status-progress-inner{
+background-color:#ff0 !important;
+border-radius:0 !important;
+border: none !important;
+}
+</style>
 </head>
 <body>
 	<canvas id='canvas'>
@@ -140,7 +154,7 @@
 	<script type='text/javascript' src='Godot.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"Godot","experimentalVK":false,"fileSizes":{"Godot.pck":403168,"Godot.wasm":17141127},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"Godot","experimentalVK":false,"fileSizes":{"Godot.pck":410976,"Godot.wasm":17141127},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {
