@@ -5,17 +5,6 @@ var _number = 0
 var volume = 0.5
 
 func _ready():
-	
-	
-	var firstName = "Thiago"
-	#var lastName = "Bruno"
-	#var emailCreate = "thiago@email.com"
-	#var wallet = "123456"
-	#var passWordCreate = "123"
-	#var passWordConfirm = "1230"
-	#print(str("parent.creatAccount('",firstName,"','",lastName,"','",emailCreate,"','",wallet,"','",passWordCreate,"','",passWordConfirm,"')"))
-	
-	
 	_get_user_volume()
 	
 	$Lock.play("locked")
